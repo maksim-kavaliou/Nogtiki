@@ -1,8 +1,18 @@
+using Salon.Server.Context;
+using Salon.Server.Repositories;
+using Salon.Server.Repositories.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
+builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddScoped<IAdministratorsRepository, AdministratorsRepository>();
+
 builder.Services.AddControllers();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
