@@ -4,5 +4,6 @@
 	[Name] NVARCHAR(256) NOT NULL,
 	[Email] NVARCHAR(256) NOT NULL,
 	[Phone] NVARCHAR(256) NOT NULL,
-	[Password] NVARCHAR(256) NOT NULL
+	[Password] NVARCHAR(256) NOT NULL,
+	CONSTRAINT [Unique_Email] UNIQUE ([Email])
 )

@@ -65,7 +65,7 @@ namespace Salon.Server.Repositories
             }
         }
 
-        public async Task UpdateAlbums(int id, Administrator administrator)
+        public async Task Update(int id, Administrator administrator)
         {
             var query = @"
                 UPDATE Administrators 

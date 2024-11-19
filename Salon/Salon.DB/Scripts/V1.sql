@@ -14,7 +14,8 @@ CREATE TABLE [dbo].[Administrators] (
     [Email]    NVARCHAR (256) NOT NULL,
     [Phone]    NVARCHAR (256) NOT NULL,
     [Password] NVARCHAR (256) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [Unique_Email] UNIQUE ([Email])
 );
 
 
