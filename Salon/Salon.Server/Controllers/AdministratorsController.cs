@@ -58,14 +58,19 @@ namespace Salon.Server.Controllers
 
         // PUT api/<AdministratorsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<JsonResult> Put(int id, [FromBody] Administrator administrator)
         {
+            await _administratorsRepository.Update(id, administrator);
+
+            return new JsonResult(new { success = true });
         }
 
         // DELETE api/<AdministratorsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<JsonResult> Delete(int id)
         {
+            await _administratorsRepository.Delete(id);
+            return new JsonResult(new { success = true });
         }
     }
 }
