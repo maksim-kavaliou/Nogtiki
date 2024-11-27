@@ -23,21 +23,22 @@ namespace Salon.Server.Controllers
 
         // GET: api/<AdministratorsController>
         [HttpGet]
-        public async Task<IEnumerable<Administrator>> Get()
+        public async Task<IActionResult> Get()
         {
-
             var administrators = await _administratorsRepository.GetAll();
 
-            return administrators;
+            _logger.LogInformation($"got {administrators.Count()} admins");
+
+            return  Ok(administrators.ToArray());
         }
 
         // GET api/<AdministratorsController>/5
         [HttpGet("{id}")]
-        public async Task<Administrator> Get(int id)
+        public async Task<JsonResult> Get(int id)
         {
             var administrator = await _administratorsRepository.GetbyId(id);
 
-            return administrator;
+            return new JsonResult(administrator);
         }
 
         // POST api/<AdministratorsController>
