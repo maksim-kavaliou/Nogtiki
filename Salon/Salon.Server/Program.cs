@@ -1,4 +1,5 @@
 using Salon.Server.Context;
+using Salon.Server.Mappers;
 using Salon.Server.Repositories;
 using Salon.Server.Repositories.Interfaces;
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddSingleton<AdministratorModelMapper>();
 builder.Services.AddScoped<IAdministratorsRepository, AdministratorsRepository>();
 
 builder.Services.AddControllers();
