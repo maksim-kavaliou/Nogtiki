@@ -8,6 +8,7 @@ namespace Salon.Server.Repositories.Interfaces
         Task Delete(int id);
         Task<IEnumerable<Administrator>> GetAll();
         Task<Administrator> GetbyId(int id);
+        Task<IEnumerable<Administrator>> GetWithFilter(string filter);
         Task Update(int id, Administrator administrator);
     }
 }

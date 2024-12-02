@@ -65,6 +65,26 @@ namespace Salon.Server.Repositories
             }
         }
 
+        public async Task<IEnumerable<Administrator>> GetWithFilter(string filter)
+        {
+            var query = @"
+                        SELECT [Id], [Name], [Email], [Phone], [Password] 
+                        FROM Administrators
+                        WHERE [Name] LIKE @Filter
+                        OR [Email] LIKE @Filter
+                        OR [Phone] LIKE @Filter";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("Filter", $"%{filter}%", DbType.String);
+
+            using (var connection = _context.CreateConnection())
+            {
+                var albums = await connection.QueryAsync<Administrator>(query, parameters);
+
+                return albums.ToList();
+            }
+        }
+
         public async Task Update(int id, Administrator administrator)
         {
             var query = @"

@@ -28,16 +28,19 @@ namespace Salon.Server.Controllers
             _administratorMapper = administratorMapper;
         }
 
-        // GET: api/<AdministratorsController>
+        // GET: api/<AdministratorsController>?filter=sdfsd
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] string? filter = null)
         {
-            var administrators = await _administratorsRepository.GetAll();
+            var administrators = filter.IsNullOrEmpty() ?
+                await _administratorsRepository.GetAll() :
+                await _administratorsRepository.GetWithFilter(filter);
 
             var viewAdministrators = administrators.Select(_administratorMapper.MapDbToViewModel).ToList();
 
             return Ok(administrators.ToArray());
         }
+
 
         // GET api/<AdministratorsController>/5
         [HttpGet("{id}")]
